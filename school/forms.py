@@ -59,3 +59,13 @@ class ContactusForm(forms.Form):
     Name = forms.CharField(max_length=30)
     Email = forms.EmailField()
     Message = forms.CharField(max_length=500,widget=forms.Textarea(attrs={'rows': 3, 'cols': 30}))
+
+
+
+
+
+#for student related form
+class CourseForm(forms.ModelForm):
+    class Meta:
+        model=models.Course
+        fields='__all__'

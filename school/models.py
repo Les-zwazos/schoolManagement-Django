@@ -53,3 +53,15 @@ class Notice(models.Model):
     date=models.DateField(auto_now=True)
     by=models.CharField(max_length=20,null=True,default='school')
     message=models.CharField(max_length=500)
+
+
+
+class Course(models.Model):
+    title = models.CharField(max_length=200)
+    by = models.CharField(max_length=30,null=True,default='The teacher')
+    course_class =models.CharField(max_length=20,choices=classes,default='Class one')
+    document = models.FileField(upload_to='documents/', blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title

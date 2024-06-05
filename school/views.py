@@ -586,6 +586,9 @@ def teacher_notice_view(request):
 
 
 
+
+
+
 #FOR STUDENT AFTER THEIR Loginnnnnnnnnnnnnnnnnnnnn(by sumit)
 @login_required(login_url='studentlogin')
 @user_passes_test(is_student)
@@ -641,3 +644,24 @@ def contactus_view(request):
             send_mail(str(name)+' || '+str(email),message,settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
             return render(request, 'school/contactussuccess.html')
     return render(request, 'school/contactus.html', {'form':sub})
+
+
+
+
+@login_required 
+
+def teacher_view_course(request):
+    return render(request,'school/course_list.html')
+
+
+
+def teacher_add_course(request):
+    form = forms.CourseForm(request.POST, request.FILES)
+    if form.is_valid():
+        form=form.save(commit=False)
+        form.by=request.user.first_name
+        form.save()
+        return redirect('teacher-view-course')
+    else:
+        print('form invalid')
+    return render(request,'school/course_add.html',{'form':form})

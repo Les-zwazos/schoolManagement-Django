@@ -72,6 +72,20 @@ urlpatterns = [
     path('teacher-view-attendance/<str:cl>', views.teacher_view_attendance_view,name='teacher-view-attendance'),
     path('teacher-notice', views.teacher_notice_view,name='teacher-notice'),
 
+
+
+    path('teacher-view-course', views.teacher_view_course,name='teacher-view-course'),
+    path('teacher-add-course', views.teacher_add_course,name='teacher-add-course'),
+    # path('delete-course/<int:pk>', views.delete_course_view,name='delete-course'),
+
+
+    # path('student-view-course', views.teacher-view-course,name='student-view-course'),
+    # path('student-add-course', views.student-add-course,name='student-add-course'),
+    # path('delete-course/<int:pk>', views.delete_course_view,name='delete-course'),
+
+
+
+
     path('student-dashboard', views.student_dashboard_view,name='student-dashboard'),
     path('student-attendance', views.student_attendance_view,name='student-attendance'),
 
