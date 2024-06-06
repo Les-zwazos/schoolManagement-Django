@@ -4,28 +4,122 @@
 
 <head>
   <style media="screen">
-   
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+    }
+    
+    .form-container {
+      padding: 30px;
+      background-color: #ffffff;
+      border: 1px solid #dee2e6;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+      width: 100%;
+      max-width: 800px; /* Increase max-width for horizontal layout */
+      text-align: center;
+    }
+
+    .form-container:hover {
+      transform: translateY(-5px);
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .form-group {
+      flex: calc(50% - 5px); /* Two fields per row with a margin */
+      margin-bottom: 10px;
+    }
+
+    .form-group:nth-child(odd) {
+      margin-right: 10px; /* Add margin to every odd group */
+    }
+
+    .form-group:last-child {
+      margin-right: 0; /* Remove margin from the last group */
+    }
+
+    .btnSubmit {
+      background-color: #28a745;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+      width: 100%;
+    }
+
+    .btnSubmit:hover {
+      background-color: #218838;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #007bff;
+      text-decoration: none;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .back-link:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+
+    .form-container input, .form-container select, .form-container textarea {
+      border: 2px solid #007bff;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease-in-out;
+    }
+
+    .form-container input:focus, .form-container select:focus, .form-container textarea:focus {
+      border-color: #0056b3;
+      outline: none;
+    }
   </style>
 
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 </head>
 
 <!------ notice page for  by admin(sumit)  ---------->
-<center>
-
-  <form method="post">
-    {% csrf_token %}
-    {% csrf_token %}
-          {{ form.as_p }}
-    <button  type="submit" class="btnSubmit center">Submit</button>
-        
-  
-  </form>
-
-  <a class="center" href="{% url 'teacher-view-course' %}">Back to list</a>
-</center>
+<div class="container">
+  <div class="form-container">
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-row">
+        {% for field in form %}
+        <div class="form-group">
+          {{ field.label_tag }}<br>
+          {{ field }}
+        </div>
+        {% endfor %}
+      </div>
+      <input type="file" name="file_field_name">
+      <button type="submit" class="btnSubmit">Submit</button>
+    </form>
+    <a class="back-link" href="{% url 'teacher-view-course' %}">Back to list</a>
+  </div>
+</div>
 
 {% endblock content %}

@@ -651,7 +651,8 @@ def contactus_view(request):
 @login_required 
 
 def teacher_view_course(request):
-    return render(request,'school/course_list.html')
+    courses=models.Course.objects.all()
+    return render(request,'school/course_list.html',{'courses':courses})
 
 
 
