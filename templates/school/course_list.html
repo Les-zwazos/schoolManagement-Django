@@ -3,7 +3,9 @@
 {% block content %}
 
 <head>
-  <style media="screen">
+   
+  
+    <style media="screen">
    a:link {
       text-decoration: none;
     }
@@ -28,7 +30,7 @@
 <center>
 
 
-    <div class="container">
+    <div class="container center">
 
         <div class="row" >
     
@@ -59,7 +61,8 @@
                   
                  
                   <td><a class="btn btn-primary btn-xs"   >Download<span class="glyphicon glyphicon-edit"></span></a></td>
-                  <td><a class="btn btn-danger btn-xs"   >Delete<span class="glyphicon glyphicon-trash"></span></a></td>
+                  <td><a class="btn btn-danger btn-xs" href="{% url 'delete-course' c.id  %}"  >Delete<span class="glyphicon glyphicon-trash"></span></a></td>
+
     
               </tr>
     

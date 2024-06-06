@@ -649,13 +649,12 @@ def contactus_view(request):
 
 
 @login_required 
-
 def teacher_view_course(request):
     courses=models.Course.objects.all()
     return render(request,'school/course_list.html',{'courses':courses})
 
 
-
+@login_required 
 def teacher_add_course(request):
     form = forms.CourseForm(request.POST, request.FILES)
     if form.is_valid():
@@ -666,3 +665,16 @@ def teacher_add_course(request):
     else:
         print('form invalid')
     return render(request,'school/course_add.html',{'form':form})
+
+
+@login_required(login_url='teacherlogin')
+@user_passes_test(is_teacher)
+def delete_course(request,pk):
+    course=models.Course.objects.get(id=pk)
+    user=models.User.objects.get(id=course.id)
+    user.delete()
+    course.delete()
+    return redirect('teacher-view-course')
+
+
+

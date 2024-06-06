@@ -57,6 +57,7 @@ class Notice(models.Model):
 
 
 class Course(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     by = models.CharField(max_length=30,null=True,default='The teacher')
     course_class =models.CharField(max_length=20,choices=classes,default='Class one')
