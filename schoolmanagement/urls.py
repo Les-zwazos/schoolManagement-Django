@@ -79,7 +79,7 @@ urlpatterns = [
     path('delete-course/<int:pk>', views.delete_course,name='delete-course'),
 
 
-    # path('student-view-course', views.teacher-view-course,name='student-view-course'),
+    path('student-view-course', views.student_view_course,name='student-view-course'),
     # path('student-add-course', views.student-add-course,name='student-add-course'),
     # path('delete-course/<int:pk>', views.delete_course_view,name='delete-course'),
 

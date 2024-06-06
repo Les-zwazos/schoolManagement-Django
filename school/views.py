@@ -677,4 +677,14 @@ def delete_course(request,pk):
     return redirect('teacher-view-course')
 
 
-
+@login_required 
+def student_view_course(request):
+    user = request.user
+    try:
+        student_extra = models.StudentExtra.objects.get(user=user)
+        student_class = student_extra.cl
+    except models.StudentExtra.DoesNotExist:
+        student_class = None
+    # courses=models.Course.objects.all()
+    courses = models.Course.objects.filter(course_class=student_class)
+    return render(request,'school/course_list_student.html',{'courses':courses})
