@@ -733,3 +733,12 @@ def teacher_view_homework(request):
     # courses=models.Course.objects.all()
     homeworks = models.Homework.objects.all()
     return render(request,'school/homework_list_teacher.html',{'homeworks':homeworks})
+
+
+
+#-------------- Homework
+
+@login_required 
+def student_view_recommandation(request):
+    courses=models.Course.objects.all()
+    return render(request,'school/recommandation_list.html',{'courses':courses})

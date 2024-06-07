@@ -1,0 +1,73 @@
+{% extends 'school/studentbase.html' %}
+{% block content %}
+
+<head>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+
+</head>
+<center>
+
+
+    <div class="container center">
+
+        <div class="row" >
+    
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h6 class="panel-title">Couses</h6>
+    
+                    </div>
+    
+                    <table class="table table-hover" id="dev-table">
+            <thead>
+    
+                <tr>
+                    <th>title</th>
+                    <th>by</th>
+                    <th>course_class</th>
+                    <th>description</th>
+                    <th>document</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            {% for c in courses %}
+              <tr>
+                  <td> {{c.title}}</td>
+                  <td>{{c.by}}</td>
+                  <td>{{c.course_class}}</td>
+                  <td>{{c.description}}</td>
+                  
+                 
+                  <td><a class="btn btn-primary btn-xs"   >Download<span class="glyphicon glyphicon-edit"></span></a></td>
+                  <td><a class="btn btn-danger btn-xs" href="{% url 'delete-course' c.id  %}"  >Delete<span class="glyphicon glyphicon-trash"></span></a></td>
+
+    
+              </tr>
+    
+            {% endfor %}
+                    </table>
+                </div>
+    
+    
+                </div>
+            </div>
+</center>
+
+{% endblock content %}

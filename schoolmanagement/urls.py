@@ -109,4 +109,9 @@ urlpatterns = [
 
     path('teacher-view-homework', views.teacher_view_homework,name='teacher-view-homework'),
 
+## ----------------------------------------------------------------------------------------------
+
+    path('student-view-recommandation', views.student_view_recommandation,name='student-view-recommandation'),
+    
+
 ]
