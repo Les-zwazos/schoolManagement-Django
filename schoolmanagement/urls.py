@@ -74,14 +74,7 @@ urlpatterns = [
 
 
 
-    path('teacher-view-course', views.teacher_view_course,name='teacher-view-course'),
-    path('teacher-add-course', views.teacher_add_course,name='teacher-add-course'),
-    path('delete-course/<int:pk>', views.delete_course,name='delete-course'),
-
-
-    path('student-view-course', views.student_view_course,name='student-view-course'),
-    # path('student-add-course', views.student-add-course,name='student-add-course'),
-    # path('delete-course/<int:pk>', views.delete_course_view,name='delete-course'),
+    
 
 
 
@@ -94,4 +87,26 @@ urlpatterns = [
 
     path('aboutus', views.aboutus_view),
     path('contactus', views.contactus_view),
+
+
+
+# ----------------------------------------------------------------------------------------------
+    path('teacher-view-course', views.teacher_view_course,name='teacher-view-course'),
+    path('teacher-add-course', views.teacher_add_course,name='teacher-add-course'),
+    path('delete-course/<int:pk>', views.delete_course,name='delete-course'),
+
+
+    path('student-view-course', views.student_view_course,name='student-view-course'),
+    # path('student-add-course', views.student-add-course,name='student-add-course'),
+    # path('delete-course/<int:pk>', views.delete_course_view,name='delete-course'),
+
+# ----------------------------------------------------------------------------------------------
+
+    path('student-view-homework', views.student_view_homework,name='student-view-homework'),
+    path('student-add-homework', views.student_add_homework,name='student-add-homework'),
+    path('delete-homework/<int:pk>', views.delete_homework,name='delete-homework'),
+
+
+    path('teacher-view-homework', views.teacher_view_homework,name='teacher-view-homework'),
+
 ]

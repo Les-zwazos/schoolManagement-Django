@@ -66,3 +66,15 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class Homework(models.Model):
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=200)
+    by = models.CharField(max_length=30,null=True,default='The student')
+    homework_teacher = models.CharField(max_length=30,null=True,default='The Teacher')
+    document = models.FileField(upload_to='documents/', blank=True, null=True)
+    uploaddate=models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title

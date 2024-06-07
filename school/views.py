@@ -646,7 +646,7 @@ def contactus_view(request):
     return render(request, 'school/contactus.html', {'form':sub})
 
 
-
+#--------------
 
 @login_required 
 def teacher_view_course(request):
@@ -688,3 +688,48 @@ def student_view_course(request):
     # courses=models.Course.objects.all()
     courses = models.Course.objects.filter(course_class=student_class)
     return render(request,'school/course_list_student.html',{'courses':courses})
+
+
+
+
+
+#-------------- Homework
+
+@login_required 
+def student_view_homework(request):
+    homeworks=models.Homework.objects.all()
+    return render(request,'school/homework_list.html',{'homeworks':homeworks})
+
+
+@login_required 
+def student_add_homework(request):
+    form = forms.HomeworkForm(request.POST, request.FILES)
+    if form.is_valid():
+        form=form.save(commit=False)
+        form.by=request.user.first_name
+        form.save()
+        return redirect('student-view-homework')
+    else:
+        print('form invalid')
+    return render(request,'school/homework_add.html',{'form':form})
+
+
+@login_required(login_url='studentlogin')
+@user_passes_test(is_student)
+def delete_homework(request,pk):
+    homework=models.Homework.objects.get(id=pk)
+    homework.delete()
+    return redirect('student-view-homework')
+
+
+@login_required 
+def teacher_view_homework(request):
+    user = request.user
+    try:
+        teacher_extra = models.StudentExtra.objects.get(user=user)
+        teacher_class = teacher_extra.cl
+    except models.StudentExtra.DoesNotExist:
+        student_class = None
+    # courses=models.Course.objects.all()
+    homeworks = models.Homework.objects.all()
+    return render(request,'school/homework_list_teacher.html',{'homeworks':homeworks})

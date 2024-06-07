@@ -64,8 +64,16 @@ class ContactusForm(forms.Form):
 
 
 
-#for student related form
+#for teacher related form
 class CourseForm(forms.ModelForm):
     class Meta:
         model=models.Course
+        fields='__all__'
+
+
+
+#for student related form
+class HomeworkForm(forms.ModelForm):
+    class Meta:
+        model=models.Homework
         fields='__all__'
